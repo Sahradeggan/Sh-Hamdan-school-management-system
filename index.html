@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sh Hamdan School</title>
+
+    <link rel="stylesheet" href="style.css" />
+
+    <!-- Boxicons -->
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="login-container">
+      <div class="login-card">
+        <div class="logo">
+          <i class="bx bxs-school"></i>
+        </div>
+
+        <h1>Sh Hamdan School</h1>
+        <p>Admin Login Portal</p>
+
+        <form id="loginForm">
+          <div class="input-group">
+            <label>Username</label>
+
+            <div class="input-box">
+              <i class="bx bx-user"></i>
+
+              <input
+                type="text"
+                id="username"
+                placeholder="Enter username"
+                required
+              />
+            </div>
+          </div>
+
+          <div class="input-group">
+            <label>Password</label>
+
+            <div class="input-box password-box">
+              <i class="bx bx-lock-alt"></i>
+
+              <input
+                type="password"
+                id="password"
+                placeholder="Enter password"
+                required
+              />
+
+              <i class="bx bx-hide toggle-password" id="togglePassword"></i>
+            </div>
+          </div>
+
+          <button type="submit" class="login-btn">Login</button>
+
+          <p id="errorMessage"></p>
+        </form>
+      </div>
+    </div>
+
+    <script src="login.js"></script>
+  </body>
+</html>

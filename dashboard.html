@@ -1,0 +1,687 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sh Hamdan School Dashboard</title>
+
+    <link rel="stylesheet" href="dashboard.css" />
+
+    <!-- Boxicons -->
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="dashboard-container">
+      <!-- SIDEBAR -->
+
+      <aside class="sidebar">
+        <div class="logo">
+          <i class="bx bxs-school"></i>
+
+          <h2>Sh Hamdan School</h2>
+        </div>
+
+        <ul class="menu">
+          <li class="active" data-section="dashboard-section">
+            <i class="bx bxs-dashboard"></i>
+            Dashboard
+          </li>
+
+          <li data-section="students-section">
+            <i class="bx bx-group"></i>
+            Students
+          </li>
+
+          <li data-section="teachers-section">
+            <i class="bx bx-user"></i>
+            Teachers
+          </li>
+
+          <li data-section="classes-section">
+            <i class="bx bx-book"></i>
+            Classes
+          </li>
+
+          <li data-section="attendance-section">
+            <i class="bx bx-calendar-check"></i>
+            Attendance
+          </li>
+
+          <li data-section="results-section">
+            <i class="bx bx-bar-chart-alt"></i>
+            Results
+          </li>
+
+          <li data-section="fees-section">
+            <i class="bx bx-wallet"></i>
+            Fees
+          </li>
+
+          <li id="logoutBtn">
+            <i class="bx bx-log-out"></i>
+            Logout
+          </li>
+        </ul>
+      </aside>
+
+      <!-- MAIN CONTENT -->
+
+      <main class="main-content">
+        <!-- TOP HEADER -->
+
+        <header class="topbar">
+          <h1>Admin Dashboard</h1>
+
+          <!-- PROFILE MODAL -->
+          <div class="admin-profile" id="adminProfileBtn">
+            <i class="bx bx-user-circle"></i>
+            <span>Admin</span>
+          </div>
+
+          <!-- VIEW PROFILE -->
+          <div class="profile-modal" id="profileModal">
+            <div class="profile-card">
+              <span id="closeProfile" class="close-profile">&times;</span>
+
+              <h2>Admin Profile</h2>
+
+              <div class="profile-info">
+                <p><strong>Name:</strong> Admin User</p>
+
+                <p><strong>Username:</strong> admin</p>
+
+                <p><strong>Password:</strong> admin123</p>
+
+                <p><strong>Role:</strong> Administrator</p>
+
+                <p><strong>School:</strong> Sh Hamdan School</p>
+              </div>
+            </div>
+          </div>
+        </header>
+
+        <!-- DASHBOARD SECTION -->
+
+        <section id="dashboard-section" class="content-section active">
+          <h2>Dashboard Overview</h2>
+
+          <div class="stats-container">
+            <div class="stat-card">
+              <h3 id="totalStudents">0</h3>
+              <p>Students</p>
+            </div>
+
+            <div class="stat-card">
+              <h3 id="totalTeachers">0</h3>
+              <p>Teachers</p>
+            </div>
+
+            <div class="stat-card">
+              <h3 id="totalClasses">0</h3>
+              <p>Classes</p>
+            </div>
+
+            <div class="stat-card">
+              <h3 id="totalAttendance">0</h3>
+              <p>Attendance</p>
+            </div>
+
+            <div class="stat-card">
+              <h3 id="totalResults">0</h3>
+              <p>Results</p>
+            </div>
+
+            <div class="stat-card">
+              <h3 id="totalFees">0</h3>
+              <p>Fees Records</p>
+            </div>
+          </div>
+          <div class="charts-wrapper">
+            <div class="chart-box">
+              <h3>Overview (Bar)</h3>
+              <canvas id="barChart"></canvas>
+            </div>
+
+            <div class="chart-box">
+              <h3>Distribution (Pie)</h3>
+              <canvas id="pieChart"></canvas>
+            </div>
+          </div>
+        </section>
+
+        <!-- STUDENTS -->
+
+        <section id="students-section" class="content-section">
+          <h2>Student Management</h2>
+
+          <!-- ADD STUDENT FORM -->
+          <div class="form-container">
+            <h3>Add New Student</h3>
+
+            <form id="studentForm">
+              <div class="form-grid">
+                <input
+                  type="text"
+                  id="studentId"
+                  placeholder="Student ID"
+                  required
+                />
+
+                <input
+                  type="text"
+                  id="studentName"
+                  placeholder="Full Name"
+                  required
+                />
+
+                <input
+                  type="number"
+                  id="studentAge"
+                  placeholder="Age"
+                  required
+                />
+
+                <select id="studentGender" required>
+                  <option value="">Gender</option>
+                  <option value="Male">Male</option>
+                  <option value="Female">Female</option>
+                </select>
+
+                <input
+                  type="text"
+                  id="studentClass"
+                  placeholder="Class"
+                  required
+                />
+
+                <input
+                  type="text"
+                  id="studentPhone"
+                  placeholder="Phone"
+                  required
+                />
+
+                <input
+                  type="text"
+                  id="studentParent"
+                  placeholder="Parent Name"
+                  required
+                />
+
+                <input
+                  type="text"
+                  id="studentAddress"
+                  placeholder="Address"
+                  required
+                />
+              </div>
+
+              <button type="submit" class="btn-add" id="submitBtn">
+                Add Student
+              </button>
+            </form>
+          </div>
+
+          <!-- SEARCH -->
+          <div class="search-box">
+            <input
+              type="text"
+              id="searchStudent"
+              placeholder="Search student by name or ID..."
+            />
+          </div>
+
+          <!-- TABLE -->
+          <div class="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Name</th>
+                  <th>Age</th>
+                  <th>Gender</th>
+                  <th>Class</th>
+                  <th>Phone</th>
+                  <th>Parent</th>
+                  <th>Address</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+
+              <tbody id="studentTableBody">
+                <!-- Dynamic Data -->
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- TEACHERS -->
+
+        <section id="teachers-section" class="content-section">
+          <h2>Teacher Management</h2>
+
+          <!-- FORM -->
+          <div class="form-container">
+            <h3>Add / Update Teacher</h3>
+
+            <form id="teacherForm">
+              <div class="form-grid">
+                <input
+                  type="text"
+                  id="teacherId"
+                  placeholder="Teacher ID"
+                  required
+                />
+
+                <input
+                  type="text"
+                  id="teacherName"
+                  placeholder="Full Name"
+                  required
+                />
+
+                <input
+                  type="text"
+                  id="teacherSubject"
+                  placeholder="Subject"
+                  required
+                />
+
+                <input
+                  type="text"
+                  id="teacherPhone"
+                  placeholder="Phone"
+                  required
+                />
+
+                <input
+                  type="text"
+                  id="teacherEmail"
+                  placeholder="Email"
+                  required
+                />
+
+                <input
+                  type="text"
+                  id="teacherSalary"
+                  placeholder="Salary"
+                  required
+                />
+              </div>
+
+              <button type="submit" class="btn-add" id="teacherSubmitBtn">
+                Add Teacher
+              </button>
+            </form>
+          </div>
+
+          <!-- SEARCH -->
+          <div class="search-box">
+            <input
+              type="text"
+              id="searchTeacher"
+              placeholder="Search teacher by name or ID..."
+            />
+          </div>
+
+          <!-- TABLE -->
+          <div class="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Name</th>
+                  <th>Subject</th>
+                  <th>Phone</th>
+                  <th>Email</th>
+                  <th>Salary</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+
+              <tbody id="teacherTableBody"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- CLASSES -->
+
+        <section id="classes-section" class="content-section">
+          <h2>Classes Management</h2>
+
+          <!-- FORM -->
+          <div class="form-container">
+            <h3>Add / Update Class</h3>
+
+            <form id="classForm">
+              <div class="form-grid">
+                <input
+                  type="text"
+                  id="classId"
+                  placeholder="Class ID"
+                  required
+                />
+
+                <input
+                  type="text"
+                  id="className"
+                  placeholder="Class Name (e.g. Grade 1)"
+                  required
+                />
+
+                <input
+                  type="text"
+                  id="classSubject"
+                  placeholder="Subject"
+                  required
+                />
+
+                <input
+                  type="text"
+                  id="classTeacher"
+                  placeholder="Assigned Teacher"
+                  required
+                />
+              </div>
+
+              <button type="submit" class="btn-add" id="classSubmitBtn">
+                Add Class
+              </button>
+            </form>
+          </div>
+
+          <!-- SEARCH -->
+          <div class="search-box">
+            <input
+              type="text"
+              id="searchClass"
+              placeholder="Search class by name or ID..."
+            />
+          </div>
+
+          <!-- TABLE -->
+          <div class="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Class</th>
+                  <th>Subject</th>
+                  <th>Teacher</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+
+              <tbody id="classTableBody"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- ATTENDANCE -->
+
+        <section id="attendance-section" class="content-section">
+          <h2>Attendance System</h2>
+
+          <!-- FORM -->
+          <div class="form-container">
+            <h3>Mark Attendance</h3>
+
+            <form id="attendanceForm">
+              <div class="form-grid">
+                <input
+                  type="text"
+                  id="attStudentId"
+                  placeholder="Student ID"
+                  required
+                />
+
+                <input
+                  type="text"
+                  id="attStudentName"
+                  placeholder="Student Name"
+                  required
+                />
+
+                <select id="attStatus" required>
+                  <option value="">Status</option>
+                  <option value="Present">Present</option>
+                  <option value="Absent">Absent</option>
+                  <option value="Late">Late</option>
+                </select>
+
+                <input type="date" id="attDate" required />
+              </div>
+
+              <button type="submit" class="btn-add" id="attSubmitBtn">
+                Add Attendance
+              </button>
+            </form>
+          </div>
+
+          <!-- SEARCH -->
+          <div class="search-box">
+            <input
+              type="text"
+              id="searchAttendance"
+              placeholder="Search by name or ID..."
+            />
+          </div>
+
+          <!-- TABLE -->
+          <div class="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Name</th>
+                  <th>Status</th>
+                  <th>Date</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+
+              <tbody id="attendanceTableBody"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- RESULTS -->
+
+        <section id="results-section" class="content-section">
+          <h2>Results / Grades System</h2>
+
+          <!-- FORM -->
+          <div class="form-container">
+            <h3>Add / Update Result</h3>
+
+            <form id="resultForm">
+              <div class="form-grid">
+                <input
+                  type="text"
+                  id="resultStudentId"
+                  placeholder="Student ID"
+                  required
+                />
+
+                <input
+                  type="text"
+                  id="resultStudentName"
+                  placeholder="Student Name"
+                  required
+                />
+
+                <input
+                  type="text"
+                  id="resultSubject"
+                  placeholder="Subject"
+                  required
+                />
+
+                <input
+                  type="number"
+                  id="resultMarks"
+                  placeholder="Marks (0 - 100)"
+                  required
+                />
+
+                <input
+                  type="text"
+                  id="resultGrade"
+                  placeholder="Grade (A, B, C...)"
+                  required
+                />
+
+                <input
+                  type="text"
+                  id="resultExam"
+                  placeholder="Exam Type (Mid/Final)"
+                  required
+                />
+              </div>
+
+              <button type="submit" class="btn-add" id="resultSubmitBtn">
+                Add Result
+              </button>
+            </form>
+          </div>
+
+          <!-- SEARCH -->
+          <div class="search-box">
+            <input
+              type="text"
+              id="searchResult"
+              placeholder="Search result by name or ID..."
+            />
+          </div>
+
+          <!-- TABLE -->
+          <div class="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Name</th>
+                  <th>Subject</th>
+                  <th>Marks</th>
+                  <th>Grade</th>
+                  <th>Exam</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+
+              <tbody id="resultTableBody"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- FEES -->
+
+        <section id="fees-section" class="content-section">
+          <h2>Fees Management</h2>
+
+          <!-- FORM -->
+          <div class="form-container">
+            <h3>Add / Update Fee Record</h3>
+
+            <form id="feeForm">
+              <div class="form-grid">
+                <input
+                  type="text"
+                  id="feeStudentId"
+                  placeholder="Student ID"
+                  required
+                />
+
+                <input
+                  type="text"
+                  id="feeStudentName"
+                  placeholder="Student Name"
+                  required
+                />
+
+                <input
+                  type="number"
+                  id="feeAmount"
+                  placeholder="Total Fee Amount"
+                  required
+                />
+
+                <input
+                  type="number"
+                  id="feePaid"
+                  placeholder="Paid Amount"
+                  required
+                />
+
+                <input
+                  type="number"
+                  id="feeBalance"
+                  placeholder="Balance (auto or manual)"
+                  required
+                />
+
+                <input type="date" id="feeDate" required />
+              </div>
+
+              <button type="submit" class="btn-add" id="feeSubmitBtn">
+                Add Fee
+              </button>
+            </form>
+          </div>
+
+          <!-- SEARCH -->
+          <div class="search-box">
+            <input
+              type="text"
+              id="searchFee"
+              placeholder="Search fee by name or ID..."
+            />
+          </div>
+
+          <!-- TABLE -->
+          <div class="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Name</th>
+                  <th>Total</th>
+                  <th>Paid</th>
+                  <th>Balance</th>
+                  <th>Date</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+
+              <tbody id="feeTableBody"></tbody>
+            </table>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <!-- 1. LIBRARIES FIRST -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- 2. CORE DASHBOARD SYSTEM -->
+    <script src="dashboard.js"></script>
+
+    <!-- 3. MODULES -->
+    <script src="student.js"></script>
+    <script src="teacher.js"></script>
+    <script src="class.js"></script>
+    <script src="attendance.js"></script>
+    <script src="result.js"></script>
+    <script src="fee.js"></script>
+
+    <!-- 4. STATS (must come BEFORE charts) -->
+    <script src="stats.js"></script>
+
+    <!-- 5. CHARTS LAST (VERY IMPORTANT) -->
+    <script src="chart.js"></script>
+    <script src="profile.js"></script>
+  </body>
+</html>

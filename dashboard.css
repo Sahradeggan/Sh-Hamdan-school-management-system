@@ -1,0 +1,441 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, sans-serif;
+}
+
+body{
+    background:#f3f4f6;
+}
+
+/* DASHBOARD LAYOUT */
+
+.dashboard-container{
+    display:flex;
+    min-height:100vh;
+}
+
+
+/* SIDEBAR */
+
+.sidebar{
+    width:260px;
+    background:#111827;
+    color:#fff;
+    padding:20px;
+    position:fixed;
+    height:100vh;
+    left:0;
+    top:0;
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    margin-bottom:40px;
+}
+
+.logo i{
+    font-size:36px;
+    color:#2563eb;
+}
+
+.logo h2{
+    font-size:20px;
+}
+
+.menu{
+    list-style:none;
+}
+
+.menu li{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:14px 16px;
+    margin-bottom:10px;
+    border-radius:12px;
+    cursor:pointer;
+    transition:0.3s;
+    font-size:16px;
+}
+
+.menu li i{
+    font-size:22px;
+}
+
+.menu li:hover{
+    background:#2563eb;
+}
+
+.menu li.active{
+    background:#2563eb;
+}
+
+
+/* MAIN CONTENT */
+
+.main-content{
+    flex:1;
+    margin-left:260px;
+    padding:25px;
+}
+
+
+/* TOPBAR */
+
+.topbar{
+    background:#fff;
+    padding:18px 25px;
+    border-radius:16px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    box-shadow:0 5px 20px rgba(0,0,0,0.08);
+    margin-bottom:30px;
+}
+
+.topbar h1{
+    color:#111827;
+    font-size:26px;
+}
+
+.admin-profile{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-weight:600;
+    color:#374151;
+    cursor: pointer;
+}
+
+.admin-profile i{
+    font-size:32px;
+    color:#2563eb;
+    cursor: pointer;
+}
+
+
+/* CONTENT SECTIONS */
+
+.content-section{
+    display:none;
+}
+
+.content-section.active{
+    display:block;
+}
+
+
+/* DASHBOARD CARDS */
+
+.cards{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:20px;
+    margin-top:25px;
+}
+
+.card{
+    background:#fff;
+    padding:25px;
+    border-radius:18px;
+    box-shadow:0 5px 20px rgba(0,0,0,0.08);
+    transition:0.3s;
+}
+
+.card:hover{
+    transform:translateY(-5px);
+}
+
+.card h3{
+    color:#6b7280;
+    font-size:17px;
+    margin-bottom:15px;
+}
+
+.card p{
+    font-size:32px;
+    font-weight:bold;
+    color:#2563eb;
+}
+
+
+/* SECTION TITLES */
+
+.content-section h2{
+    color:#111827;
+    margin-bottom:15px;
+    font-size:28px;
+}
+
+.content-section p{
+    color:#6b7280;
+    font-size:16px;
+}
+.stats-container{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(180px, 1fr));
+    gap:15px;
+    margin-top:20px;
+}
+
+.stat-card{
+    background:#fff;
+    padding:20px;
+    border-radius:16px;
+    box-shadow:0 5px 20px rgba(0,0,0,0.08);
+    text-align:center;
+    transition:0.3s;
+}
+
+.stat-card:hover{
+    transform:translateY(-5px);
+}
+
+.stat-card h3{
+    font-size:28px;
+    color:#2563eb;
+    margin-bottom:5px;
+}
+
+.stat-card p{
+    color:#6b7280;
+    font-weight:500;
+}
+
+
+
+/* IMPORTANT: control chart height */
+.charts-wrapper{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:20px;
+    margin-top: 15px;
+}
+
+.chart-box{
+    height:350px;
+    background:#fff;
+    overflow:hidden;
+}
+
+canvas{
+    max-height:300px;
+}
+
+.chart-box h3{
+    padding: 8px;
+    margin-top: 10px;
+    margin-bottom:10px;
+    font-size:16px;
+    color:#111827;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:900px){
+
+    .sidebar{
+        width:80px;
+        padding:20px 10px;
+    }
+
+    .logo h2{
+        display:none;
+    }
+
+    .menu li span{
+        display:none;
+    }
+
+    .main-content{
+        margin-left:80px;
+    }
+
+}
+
+@media(max-width:600px){
+
+    .topbar{
+        flex-direction:column;
+        gap:15px;
+        align-items:flex-start;
+    }
+
+    .cards{
+        grid-template-columns:1fr;
+    }
+
+}
+
+/* STUDENT SECTION WRAPPER */
+
+.form-container{
+    background:#fff;
+    padding:20px;
+    border-radius:16px;
+    box-shadow:0 5px 20px rgba(0,0,0,0.08);
+    margin-top:15px;
+}
+
+.form-container h3{
+    margin-bottom:15px;
+    color:#111827;
+}
+
+/* FORM GRID */
+
+.form-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(180px, 1fr));
+    gap:12px;
+}
+
+.form-grid input,
+.form-grid select{
+    padding:12px;
+    border:2px solid #e5e7eb;
+    border-radius:10px;
+    outline:none;
+    transition:0.3s;
+}
+
+.form-grid input:focus,
+.form-grid select:focus{
+    border-color:#2563eb;
+}
+
+/* ADD BUTTON */
+
+.btn-add{
+    margin-top:15px;
+    padding:12px 18px;
+    background:#2563eb;
+    color:#fff;
+    border:none;
+    border-radius:10px;
+    cursor:pointer;
+    font-weight:bold;
+    transition:0.3s;
+}
+
+.btn-add:hover{
+    background:#1d4ed8;
+}
+
+/* SEARCH BOX */
+
+.search-box{
+    margin-top:20px;
+}
+
+.search-box input{
+    width:100%;
+    padding:12px;
+    border-radius:10px;
+    border:2px solid #e5e7eb;
+    outline:none;
+}
+
+.search-box input:focus{
+    border-color:#2563eb;
+}
+
+/* TABLE */
+
+.table-container{
+    margin-top:20px;
+    background:#fff;
+    padding:15px;
+    border-radius:16px;
+    box-shadow:0 5px 20px rgba(0,0,0,0.08);
+    overflow-x:auto;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    min-width:900px;
+}
+
+table th,
+table td{
+    padding:12px;
+    text-align:left;
+    border-bottom:1px solid #eee;
+}
+
+table th{
+    background:#f3f4f6;
+    color:#111827;
+}
+
+/* ACTION BUTTONS */
+
+.btn-delete{
+    padding:6px 10px;
+    background:#ef4444;
+    color:#fff;
+    border:none;
+    border-radius:6px;
+    cursor:pointer;
+    margin-right:5px;
+}
+
+.btn-delete:hover{
+    background:#dc2626;
+}
+
+.btn-edit{
+    padding:6px 10px;
+    background:#10b981;
+    color:#fff;
+    border:none;
+    border-radius:6px;
+    cursor:pointer;
+}
+
+.btn-edit:hover{
+    background:#059669;
+}
+
+.profile-modal{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.45);
+
+    display:none;
+    justify-content:center;
+    align-items:center;
+
+    z-index:999;
+}
+
+.profile-card{
+    background:#fff;
+    width:400px;
+    padding:28px;
+    border-radius:18px;
+    position:relative;
+}
+
+.profile-card h2{
+    margin-bottom:20px;
+    color:#2563eb;
+}
+
+.profile-info p{
+    margin:14px 0;
+    font-size:16px;
+}
+
+.close-profile{
+    position:absolute;
+    right:18px;
+    top:12px;
+    font-size:30px;
+    cursor:pointer;
+}
